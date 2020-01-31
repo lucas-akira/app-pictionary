@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pictionary</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <!-- CSS file -->
+    <link href="style.css" rel="stylesheet">
+    <!-- Vue.js Dev version, change to production once finished! -->
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <modal-create-user v-on:login="login"></modal-create-user>
+      <modal-create-room v-on:create-room="createRoom"></modal-create-room>
+      <modal-add-word v-on:add-word="addWord"></modal-add-word>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">Pictionary</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li v-if="loginResult.data.adm" class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarAdmDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adm</a>
+              <div class="dropdown-menu" aria-labelledby="navbarAdmDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addWord" v-on:click="wordAdded = false">Add a word</a>
+              </div>
+            </li>
+
+          </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <a class="nav-link" href="#"> {{ loginResult.data.name }}<span class="sr-only">(current)</span></a>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#createNewUser"
+            v-on:click="triedToLogin = false">Login/Sign up</button>
+        </form>
+      </div>
+      </nav>
+
+      <bootstrap-alert
+        v-bind:created-user="loginResult.created"
+        v-bind:login-valid="loginResult.valid"
+        v-bind:show="triedToLogin">
+      </bootstrap-alert>
+
+
+      <ul>
+        <li v-for="user in users">
+          {{ user.name }}
+          <span v-if="user.adm">(ADM)</span>
+        </li>
+      </ul>
+
+      <available-rooms
+        v-bind:rooms="availableRooms"
+        v-bind:users="users"
+        v-on:go-to-room="goToRoom">
+      </available-rooms>
+
+      <button type="button"
+              class="btn btn-primary btn-lg"
+              data-toggle="modal"
+              data-target="#createNewMatch"
+              v-bind:disabled="!loginResult.valid"
+              v-on:click="roomCreated = false">
+        Create a new match
+      </button>
+
+    </div>
+
+
+
+    <script src="main.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="jquery.min.js"></script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+  </body>
+</html>

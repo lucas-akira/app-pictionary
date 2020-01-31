@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pictionary room</title>
+    <!-- Dev version, change to production once finished! -->
+    <script src="../vue.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+    <!-- CSS file -->
+    <link href="../room_style.css" rel="stylesheet">
+  </head>
+  <body>
+    <canvas class="whiteboard" ></canvas>
+    <div class="colors">
+      <div class="color black"></div>
+      <div class="color red"></div>
+      <div class="color green"></div>
+      <div class="color blue"></div>
+      <div class="color yellow"></div>
+    </div>
+    <div id="chat">
+      <ul id="messages" class="pre-scrollable list-group" style="max-height: 93%" ></ul>
+          <% if(host.name === currentUser.name) { %>
+            <li class="list-group-item">The word is: <%= chosenWord %></li>
+          <% } %>
+
+      <div id="textForm">
+        <form action="">
+          <div class="input-group mb-3">
+            <input id="m" type="text" autocomplete="off" class="form-control" placeholder="Make a guess..." aria-label="Make a guess..." aria-describedby="send-button">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit" id="send-button">Send</button>
+            </div>
+          </div>
+          <!-- <input id="m" autocomplete="off" class="form-control" /><button>Send</button> -->
+        </form>
+      <div>
+    <div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var hostWord = false;
+      var g_userName = '<%- currentUser.name %>';
+      var g_roomId = <%- roomId %>;
+      var g_hostName = '<%- host.name %>';
+      var g_isHost = (g_hostName === g_userName);
+      if (g_isHost) {
+        hostWord = '<%- chosenWord %>';
+      }
+    </script>
+    <script src="../room_script.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../jquery.min.js"></script>
+    <script src="../popper.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+  </body>
+</html>
