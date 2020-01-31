@@ -109,4 +109,4 @@ A logged user can also join a room from the list of available matches (if there 
 - Also, there is no point system and no winning verification.
 
 ## Conclusion
-Although the implementation of the game is far from complete, the essential elements of it (i.e. communication, authentication system, creation of rooms, whiteboard and chat, etc.) are functional and most of the total work is done. Considering the large amount of JavaScript tools that had to be learned from scratch (all mentioned here)
+Although the implementation of the game is far from complete, the essential elements of it (i.e. communication, authentication system, creation of rooms, whiteboard and chat, etc.) are functional and most of the total work is done. During the course of doing this project I've learned a lot of JavaScript tools from the beginning (Node.js, Express, Sequelize, Bootstrap, etc.) and even JavaScript itself (I haven't used it much until then), being an excellent way to quickly learn the general environment and the work of a web developer.
