@@ -75,6 +75,10 @@ where `<database name>`, `<DB user>`, `<DB password>`, `<DB address>` and `<DB p
 
 Access the site by entering `http://localhost:3000`
 
+## Tested environment
+- Operating System: Fedora 30, KDE Plasma Spin
+- MySQL installed following instructions from the official Fedora docs: https://docs.fedoraproject.org/en-US/quick-docs/installing-mysql-mariadb/
+
 ## Results
 The project is incomplete due to time constraints, but the core elements of the game are present. The whiteboard and chat implementations of this project are adapted versions of demos given by Socket.io.
 ### Initial page and login
