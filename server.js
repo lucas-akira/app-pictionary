@@ -1,9 +1,23 @@
 // Database initialization
 /********************************************/
+// Modify these as necessary
+var dbName = process.argv[2];
+var dbUsername = process.argv[3];
+var dbPassword = process.argv[4];
+var dbAddress = 'localhost';
+var dbPort = 3306;
+if (process.argv.length >= 6) {
+  dbAddress = process.argv[5];
+}
+
+if (process.argv.length >= 7) {
+  dbPort = process.argv[7];
+}
+
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('pictionary-db','pictionary-db','Centrale$upelec1', {
-  host: 'localhost',
-  port: 3306,
+const sequelize = new Sequelize(dbName, dbUsername,dbPassword, {
+  host: dbAddress,
+  port: dbPort,
   dialect: 'mysql'
 });
 
@@ -128,6 +142,7 @@ app.post('/room', function (req, res) {
           if (host.name == req.body.user.name) {
             // Save host "user id" as code
             host.code = req.body.user.id;
+            g_code = host.code;
             host.save().then(() => {});
 
             // Set random word
@@ -151,7 +166,7 @@ app.get('/room/:g_code', function(req, res){
     app.use(express.static('front/images'))
     app.use(express.static('front/scripts'))
     app.use(express.static('front/styles'))
-    console.log('oi');
+    //console.log('oi');
     if (g_dataToRoom === false) {
       // Don't allow in site if not logged in
       res.status(401).send("You have to login first!");
