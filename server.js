@@ -174,10 +174,10 @@ app.get('/room/:g_code', function(req, res){
     }
     res.render('room', g_dataToRoom);
     g_numberOfTries++;
-    if (g_numberOfTries >= 2 ){
-      g_dataToRoom = false;
-      g_numberOfTries = 0;
-    }
+    // if (g_numberOfTries >= 2 ){
+    //   g_dataToRoom = false;
+    //   g_numberOfTries = 0;
+    // }
 
 });
 
